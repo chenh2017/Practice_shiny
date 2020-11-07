@@ -1,8 +1,5 @@
-"# Practice_shiny" 
-
+The rep to pratice shiny and rmarkdown
 
 # 2020/11/07
 
-1. 配置sublime text3的 markdown、git
-2. 貌似没成功
-
+# 配置sublime text 3
