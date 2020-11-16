@@ -1,0 +1,55 @@
+---
+title: "Prictice Shiny"
+runtime: shiny
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## load data
+
+
+
+
+
+```{r, echo = FALSE}
+
+         wellPanel(
+           h3("Data upload"),
+           fileInput("datafile", "Upload a csv or sas7bdat file",accept = c(".sas7bdat", ".csv"), multiple = TRUE),
+           uiOutput("data_select")
+         )
+
+data_selected <- eventReactive(input$select_file, {
+    isolate({index <- which(names(dd$data)==input$select_file)[1]})
+    dd$data[[index]]
+  })
+
+  datapreview_header <- renderUI({
+    data_selected()
+    isolate(data_name <- input$select_file)
+    h3(paste("Data Preview for", data_name))
+  })
+
+  data_preview <- DT::renderDataTable({
+    DT::datatable(data = data_selected(),
+                  caption = isolate(input$select_file),
+                  rownames = FALSE,
+                  style="bootstrap",
+                  class="compact",
+                  extensions = "Scroller", options = list(scrollY=400, scrollX=TRUE))
+  })
+
+
+         fluidRow(
+           wellPanel(
+             uiOutput("datapreview_header"),
+             div(DT::dataTableOutput("data_preview"), style = "font-size: 75%")
+           )
+         )
+
+```
+
+
