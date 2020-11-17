@@ -1,5 +1,9 @@
 The rep to pratice shiny and rmarkdown
 
+# 2020/11/17
+
+Practice network with package "visNetwork"
+
 # 2020/11/16
 
 Practice network with package "networkD3"
